@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pejot",
+    "note": "Cracow's classic skatepark, includes stairs, quaterpipes, banks, ledges. Can get crowded with scooter kids.",
+    "coordinates": [50.06131, 19.915628],
+    "images": [
+      "/src/images/pejot.jpg",
+      "/src/images/pejot-3.jpg"
+            ],
+    "type": "Skatepark"
+  },
+  {
+    "name": "Sheraton Plaza",
+    "note": "Most popular Cracow's plaza, includes large flat area and ledges.",
+    "coordinates": [50.054931, 19.932331],
+    "images": ["/src/images/sheraton.jpg"],
+    "type": "Street"
+  },
+  {
+    "name": "Matejki Plaza",
+    "note": "Mid sized plaza with small stair sets, lots of gaps options - even more when you are skating the monument. Police can interrupt your session.",
+    "coordinates": [50.066287, 19.942049],
+    "images": ["/src/images/matejki.jpg"],
+    "type": "Street"
+  }
+]
