@@ -64,8 +64,8 @@ export default function App() {
     >
       <h1
         style={{
-          marginBottom: "50px",
-          fontSize: "4vw", // zamiast 80px, dopasowuje się do szerokości ekranu
+          marginBottom: "30px",
+          fontSize: "5vw", // zamiast 80px, dopasowuje się do szerokości ekranu
           color: "#333",
           fontFamily: "'IBM Plex Mono', monospace",
           textAlign: "center",
@@ -76,8 +76,9 @@ export default function App() {
       <div
         id="map"
         style={{
-          height: "650px",
-          width: "750px",
+          height: "60vh",
+          width: "90%",
+          maxWidth: "750px",
           border: "2px solid black",
           borderRadius: "8px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",

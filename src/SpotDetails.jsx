@@ -7,7 +7,7 @@ export default function SpotDetails({ spot }) {
     return (
       <div
         style={{
-          marginTop: "20px",
+          marginTop: "5px",
           fontSize: "16px",
           color: "#555",
           fontFamily: "'IBM Plex Mono', monospace",
@@ -38,10 +38,11 @@ export default function SpotDetails({ spot }) {
   return (
     <div
       style={{
-        marginTop: "20px",
+        marginTop: "5px",
         padding: "20px",
         fontFamily: "'IBM Plex Mono', monospace",
-        width: "750px",
+        width: "90%",
+        maxWidth: "750px",
         textAlign: "center",
         display: "flex",
         flexDirection: "column",
@@ -49,10 +50,19 @@ export default function SpotDetails({ spot }) {
         alignItems: "center",
       }}
     >
-      <h2 style={{ fontSize: "24px", marginBottom: "10px", color: "#333" }}>
+      <h2 style={{ fontSize: "24px", marginBottom: "5px", color: "#333" }}>
         {spot.name}
       </h2>
-      <p style={{ fontSize: "16px", color: "#555", marginBottom: "10px" }}>
+      <p
+        style={{
+          fontSize: "16px",
+          color: "#555",
+          marginBottom:
+            typeof window !== "undefined" && window.innerWidth < 600
+              ? "-30vw"
+              : "0px",
+        }}
+      >
         {spot.note}
       </p>
       {spot.images && spot.images.length > 0 && (
@@ -61,7 +71,7 @@ export default function SpotDetails({ spot }) {
             position: "relative",
             width: "100%",
             maxWidth: "750px",
-            height: "400px",
+            height: "60vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
