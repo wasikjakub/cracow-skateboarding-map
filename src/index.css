@@ -83,3 +83,48 @@ html, body {
   width: 100%; /* Zapewnia, że zawartość nie wyjdzie poza ekran */
   align-items: center; /* Wycentrowanie zawartości w poziomie */
 }
+
+
+
+/* Uploadcare widget button custom style */
+.uploadcare--widget__button {
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  color: #333 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+.uploadcare--widget__button:hover,
+.uploadcare--widget__button:focus,
+.uploadcare--widget__button:active {
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+
+/* Style for select elements to match Uploadcare button */
+select {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+  appearance: none; /* Remove default arrow style */
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+select:hover {
+  border-color: #999;
+}
+
+select:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
+}
