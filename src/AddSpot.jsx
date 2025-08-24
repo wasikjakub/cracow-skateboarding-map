@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import { initializeMap, createCustomIcon, cleanupMap } from "./utils/mapUtils";
 import { SPOT_TYPES, FORMSPREE_ENDPOINT, UPLOADCARE_PUBLIC_KEY } from "./constants/formOptions";
+import { logFormSubmission, logMapInteraction } from "./utils/analytics";
 
 export default function AddSpot() {
   const [name, setName] = useState("");
@@ -70,11 +71,17 @@ export default function AddSpot() {
     const customIcon = createCustomIcon();
     const map = initializeMap("add-map");
 
+    // Track map initialization for add spot
+    logMapInteraction('Initialize', 'AddSpot Map');
+
     let marker;
 
     map.on("click", (e) => {
       setLat(e.latlng.lat);
       setLng(e.latlng.lng);
+
+      // Track map clicks
+      logMapInteraction('Click', 'Coordinate Selection');
 
       if (marker) {
         marker.setLatLng(e.latlng);
@@ -93,6 +100,10 @@ export default function AddSpot() {
     if (hiddenInput) {
       hiddenInput.value = images.join(', ');
     }
+    
+    // Track form submission
+    logFormSubmission('AddSpot');
+    
     setStatus("SUCCESS");
   };
 

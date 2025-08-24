@@ -4,6 +4,7 @@ import spots from "./spots.json";
 import SpotDetails from "./SpotDetails";
 import Footer from "./components/Footer";
 import { initializeMap, createCustomIcon, addMarkersToMap } from "./utils/mapUtils";
+import { logSpotView, logMapInteraction } from "./utils/analytics";
 
 export default function Home() {
   const [selectedSpot, setSelectedSpot] = useState(null);
@@ -20,7 +21,14 @@ export default function Home() {
     const map = initializeMap("map");
     const customIcon = createCustomIcon();
     
-    addMarkersToMap(map, spots, customIcon, setSelectedSpot);
+    // Track map initialization
+    logMapInteraction('Initialize', 'Map Loaded');
+    
+    addMarkersToMap(map, spots, customIcon, (spot) => {
+      setSelectedSpot(spot);
+      // Track spot selection
+      logSpotView(spot.name);
+    });
   }, []);
 
   return (

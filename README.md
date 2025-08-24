@@ -2,6 +2,8 @@
 
 An interactive map showcasing skateboarding spots in Krakow, Poland. Built with React, Leaflet, and modern web technologies.
 
+**🌐 Live at: [cracowskatemap.xyz](https://cracowskatemap.xyz)**
+
 ## Features
 
 - **Interactive Map**: View skateboarding spots across Krakow with Leaflet integration

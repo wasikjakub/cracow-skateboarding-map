@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { logEvent } from "./utils/analytics";
 
 export default function SpotDetails({ spot }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -15,12 +16,16 @@ export default function SpotDetails({ spot }) {
     setCurrentImageIndex((prevIndex) =>
       (prevIndex + 1) % spot.images.length
     );
+    // Track image navigation
+    logEvent('Gallery', 'Next Image', spot.name);
   };
 
   const handlePreviousImage = () => {
     setCurrentImageIndex((prevIndex) =>
       (prevIndex - 1 + spot.images.length) % spot.images.length
     );
+    // Track image navigation
+    logEvent('Gallery', 'Previous Image', spot.name);
   };
 
   return (
