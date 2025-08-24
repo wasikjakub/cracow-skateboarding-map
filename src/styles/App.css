@@ -1,0 +1,565 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: #fdf5e6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Override mobile browser defaults for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: inherit !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Ensure headings are never treated as links on mobile */
+h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
+  color: inherit !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: inherit !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+  background-color: #fdf5e6;
+  z-index: 1000;
+  border-bottom: 2px solid #ccc;
+}
+
+.nav-button {
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  color: #333 !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.nav-button:hover,
+.nav-button:focus,
+.nav-button:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: #333 !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+/* Layout */
+.page-container {
+  padding-top: 60px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fdf5e6;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.spot-details-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Typography */
+.main-heading {
+  margin-bottom: 30px;
+  font-size: 5vw;
+  color: #333 !important;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.main-heading:hover,
+.main-heading:focus,
+.main-heading:active {
+  color: #333 !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+.sub-heading {
+  font-size: 5vw;
+  margin-bottom: 30px;
+  color: #333 !important;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+.sub-heading:hover,
+.sub-heading:focus,
+.sub-heading:active {
+  color: #333 !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #444;
+}
+
+/* Map Styles */
+.map-container {
+  height: 60vh;
+  width: 90%;
+  max-width: 750px;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+.form-wrapper {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-label {
+  color: black;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  color: #333 !important;
+  background-color: white;
+}
+
+/* Style dropdown options */
+.form-select option {
+  color: #333 !important;
+  background-color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+}
+
+/* Style the placeholder option specifically */
+.form-select option[value=""] {
+  color: #333 !important;
+  background-color: white;
+}
+
+/* Ensure select text is always black */
+.form-select:focus,
+.form-select:hover,
+.form-select:active {
+  color: #333 !important;
+  border-color: #333;
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-button {
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.form-button:hover {
+  background-color: #555;
+}
+
+/* Image Upload */
+.image-upload {
+  margin-top: 8px;
+}
+
+/* File upload button styling - More aggressive targeting */
+input[role="uploadcare-uploader"] {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+input[role="uploadcare-uploader"]:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+/* Uploadcare widget styling */
+.uploadcare__widget {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.uploadcare__widget:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+/* Target Uploadcare button specifically */
+.uploadcare__button {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.uploadcare__button:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+/* Additional Uploadcare element targeting */
+.uploadcare__widget__button,
+.uploadcare__widget__button_type_open,
+.uploadcare__widget__button_type_upload {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.uploadcare__widget__button:hover,
+.uploadcare__widget__button_type_open:hover,
+.uploadcare__widget__button_type_upload:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+/* Target any button-like elements that might be generated */
+[data-role="uploadcare-uploader"] button,
+[role="uploadcare-uploader"] + button,
+.uploadcare__widget button {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-role="uploadcare-uploader"] button:hover,
+[role="uploadcare-uploader"] + button:hover,
+.uploadcare__widget button:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+/* Target any element with uploadcare in the class name */
+[class*="uploadcare"] {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #333 !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Target any element with uploadcare in the class name on hover */
+[class*="uploadcare"]:hover {
+  background-color: #555 !important;
+  border-color: #555 !important;
+}
+
+.image-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-thumbnail {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Spot Details */
+.spot-details {
+  margin-top: 5px;
+  padding: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  width: 90%;
+  max-width: 750px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spot-details-placeholder {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #555;
+  font-family: 'IBM Plex Mono', monospace;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spot-name {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.spot-note {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.spot-author {
+  margin-top: -5vh;
+  margin-bottom: 30px;
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+}
+
+/* Image Gallery */
+.image-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.gallery-image {
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-nav-button {
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  padding: 10px;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.gallery-nav-button:hover {
+  color: #666;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.gallery-nav-button.prev {
+  left: 10px;
+}
+
+.gallery-nav-button.next {
+  right: 10px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  padding: 2.5em 2em 1.5em 2em;
+  min-width: 300px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+}
+
+.modal-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  color: #333;
+}
+
+.modal-message {
+  margin-bottom: 1.5em;
+  color: #444;
+}
+
+.modal-button {
+  padding: 0.5em 1.5em;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease;
+}
+
+.modal-button:hover {
+  background-color: #555;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  background-color: #fdf5e6;
+}
+
+.footer-link {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .spot-note {
+    margin-bottom: -30vw;
+  }
+  
+  .main-heading,
+  .sub-heading {
+    font-size: 8vw;
+  }
+} 

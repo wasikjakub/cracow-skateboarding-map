@@ -5,19 +5,7 @@ export default function SpotDetails({ spot }) {
 
   if (!spot) {
     return (
-      <div
-        style={{
-          marginTop: "5px",
-          fontSize: "16px",
-          color: "#555",
-          fontFamily: "'IBM Plex Mono', monospace",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "200px",
-        }}
-      >
+      <div className="spot-details-placeholder">
         Choose a spot on map to view details
       </div>
     );
@@ -36,81 +24,29 @@ export default function SpotDetails({ spot }) {
   };
 
   return (
-    <div
-      style={{
-        marginTop: "5px",
-        padding: "20px",
-        fontFamily: "'IBM Plex Mono', monospace",
-        width: "90%",
-        maxWidth: "750px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <h2 style={{ fontSize: "24px", marginBottom: "5px", color: "#333" }}>
+    <div className="spot-details">
+      <h2 className="spot-name">
         {spot.name}
       </h2>
-      <p
-        style={{
-          fontSize: "16px",
-          color: "#555",
-          marginBottom:
-            typeof window !== "undefined" && window.innerWidth < 600
-              ? "-30vw"
-              : "0px",
-        }}
-      >
+      <p className="spot-note">
         {spot.note}
       </p>
       {spot.images && spot.images.length > 0 && (
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            maxWidth: "750px",
-            height: "60vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <div className="image-gallery">
           <button
             onClick={handlePreviousImage}
-            style={{
-              position: "absolute",
-              left: "10px",
-              background: "none",
-              border: "none",
-              fontSize: "24px",
-              cursor: "pointer",
-              color: "#333",
-            }}
+            className="gallery-nav-button prev"
           >
             &#8249;
           </button>
           <img
             src={spot.images[currentImageIndex]}
             alt={`${spot.name} ${currentImageIndex + 1}`}
-            style={{
-              maxHeight: "100%",
-              maxWidth: "100%",
-              borderRadius: "8px",
-            }}
+            className="gallery-image"
           />
           <button
             onClick={handleNextImage}
-            style={{
-              position: "absolute",
-              right: "10px",
-              background: "none",
-              border: "none",
-              fontSize: "24px",
-              cursor: "pointer",
-              color: "#333",
-            }}
+            className="gallery-nav-button next"
           >
             &#8250;
           </button>

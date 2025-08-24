@@ -1,44 +1,10 @@
 import { useState, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import iconUrl from "leaflet/dist/images/marker-icon.png";
-import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
-import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-
-const containerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  minHeight: "100vh",
-  backgroundColor: "#fdf5e6",
-  overflow: "auto",
-  overflowX: "hidden",
-};
-
-const headingStyle = {
-  fontFamily: "'IBM Plex Mono', monospace",
-  fontWeight: "bold",
-  fontSize: "5vw",
-  marginBottom: "30px",
-  color: "#333",
-  textAlign: "center",
-};
-
-const mapStyle = {
-  height: "60vh",
-  width: "90%",
-  maxWidth: "750px",
-  border: "2px solid black",
-  borderRadius: "8px",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-  marginBottom: "20px",
-};
-
-const formWrapperStyle = {
-  width: "90%",
-  maxWidth: "500px",
-  margin: "0 auto",
-};
+import Footer from "./components/Footer";
+import Modal from "./components/Modal";
+import { initializeMap, createCustomIcon, cleanupMap } from "./utils/mapUtils";
+import { SPOT_TYPES, FORMSPREE_ENDPOINT, UPLOADCARE_PUBLIC_KEY } from "./constants/formOptions";
 
 export default function AddSpot() {
   const [name, setName] = useState("");
@@ -46,6 +12,10 @@ export default function AddSpot() {
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [images, setImages] = useState([]);
+  const [type, setType] = useState("");
+  const [author, setAuthor] = useState("");
+  const [status, setStatus] = useState(null);
+
   // Load Uploadcare script
   useEffect(() => {
     if (!window.uploadcare) {
@@ -73,36 +43,32 @@ export default function AddSpot() {
         fileGroup.done(file => setImages([file.cdnUrl]));
       }
     });
+
+    // Apply custom styling to Uploadcare button
+    const applyUploadcareStyling = () => {
+      const uploadcareElements = document.querySelectorAll('[class*="uploadcare"], [class*="ucare"], button[class*="upload"], button[class*="ucare"]');
+      uploadcareElements.forEach(element => {
+        element.style.backgroundColor = '#333';
+        element.style.color = 'white';
+        element.style.border = '2px solid #333';
+        element.style.borderRadius = '4px';
+        element.style.padding = '8px 16px';
+        element.style.fontFamily = "'IBM Plex Mono', monospace";
+        element.style.fontSize = '14px';
+        element.style.cursor = 'pointer';
+        element.style.transition = 'all 0.2s ease';
+      });
+    };
+
+    // Apply styling immediately and also after a delay to catch dynamically created elements
+    applyUploadcareStyling();
+    setTimeout(applyUploadcareStyling, 1000);
+    setTimeout(applyUploadcareStyling, 2000);
   }, []);
-  const [type, setType] = useState("");
-  const [author, setAuthor] = useState("");
-  const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    // Fix leaflet's default icon path issue
-    delete L.Icon.Default.prototype._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconUrl,
-      iconRetinaUrl,
-      shadowUrl,
-    });
-
-    const customIcon = L.icon({
-      iconUrl,
-      iconRetinaUrl,
-      shadowUrl,
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41],
-    });
-
-    const map = L.map("add-map").setView([50.0647, 19.945], 13);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    const customIcon = createCustomIcon();
+    const map = initializeMap("add-map");
 
     let marker;
 
@@ -118,12 +84,11 @@ export default function AddSpot() {
     });
 
     return () => {
-      map.off();
-      map.remove();
+      cleanupMap(map);
     };
   }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = () => {
     const hiddenInput = document.querySelector('input[name="images"]');
     if (hiddenInput) {
       hiddenInput.value = images.join(', ');
@@ -132,41 +97,47 @@ export default function AddSpot() {
   };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={headingStyle}>
+    <div className="container">
+      <h1 className="sub-heading">
        Submit your favourite spot
       </h1>
-      <p style={{ textAlign: "center", marginBottom: "20px", fontSize: "1.2em", color: "#444" }}>
+      <p className="description">
         Click on the map to set coordinates and fill in the details below to submit a new spot.
       </p>
       <div
         id="add-map"
-        style={mapStyle}
+        className="map-container"
       />
-      <div
-        style={{
-          ...formWrapperStyle,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div className="form-wrapper">
         <form
           method="POST"
-          action="https://formspree.io/f/mkgvwbnw"
+          action={FORMSPREE_ENDPOINT}
           target="hidden_iframe"
           onSubmit={handleFormSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          className="form"
         >
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Spot name: </label>
-            <input name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+          <div className="form-group">
+            <label className="form-label">Spot name: </label>
+            <input 
+              name="name" 
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              required 
+              className="form-input"
+            />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Note: </label>
-            <textarea name="note" value={note} onChange={(e) => setNote(e.target.value)} required />
+          <div className="form-group">
+            <label className="form-label">Note: </label>
+            <textarea 
+              name="note" 
+              value={note} 
+              onChange={(e) => setNote(e.target.value)} 
+              required 
+              className="form-textarea"
+            />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Latitude: </label>
+          <div className="form-group">
+            <label className="form-label">Latitude: </label>
             <input
               name="lat"
               value={lat}
@@ -174,10 +145,11 @@ export default function AddSpot() {
               type="number"
               step="any"
               required
+              className="form-input"
             />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Longitude: </label>
+          <div className="form-group">
+            <label className="form-label">Longitude: </label>
             <input
               name="lng"
               value={lng}
@@ -185,53 +157,62 @@ export default function AddSpot() {
               type="number"
               step="any"
               required
+              className="form-input"
             />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Type: </label>
-            <select name="type" value={type} onChange={(e) => setType(e.target.value)} required>
-              <option value="">Select type</option>
-              <option value="Skatepark">Skatepark</option>
-              <option value="Street">Street</option>
-              <option value="DIY">DIY</option>
+          <div className="form-group">
+            <label className="form-label">Type: </label>
+            <select 
+              name="type" 
+              value={type} 
+              onChange={(e) => setType(e.target.value)} 
+              required
+              className="form-select"
+            >
+              {SPOT_TYPES.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>
+          <div className="form-group">
+            <label className="form-label">
               Images (optional):
             </label>
             <input
               type="hidden"
               role="uploadcare-uploader"
-              data-public-key="9ec3c18363d778e9556b"
+              data-public-key={UPLOADCARE_PUBLIC_KEY}
               data-multiple
               id="uploadcare-widget"
             />
             <input type="hidden" name="images" value={images.join(', ')} />
             {/* Thumbnails below */}
-            <div style={{ display: "flex", gap: "8px", marginTop: "8px", flexWrap: "wrap" }}>
+            <div className="image-thumbnails">
               {images && images.length > 0 &&
                 images.map((url, idx) => (
                   <img
                     key={idx}
                     src={url}
                     alt={`uploaded ${idx + 1}`}
-                    style={{ width: "64px", height: "64px", objectFit: "cover", borderRadius: "5px", border: "1px solid #ccc" }}
+                    className="image-thumbnail"
                   />
                 ))}
             </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <label style={{ color: "black", textAlign: "center", width: "100%" }}>Author: </label>
-            <input name="author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <div className="form-group">
+            <label className="form-label">Author: </label>
+            <input 
+              name="author" 
+              value={author} 
+              onChange={(e) => setAuthor(e.target.value)} 
+              className="form-input"
+            />
           </div>
           <button
             type="submit"
-            style={{
-              marginTop: "10px",
-              outline: "none",
-              border: "none",
-            }}
+            className="form-button"
           >
             Submit
           </button>
@@ -239,79 +220,16 @@ export default function AddSpot() {
         </form>
         <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
       </div>
-      {/* Modal for success */}
-      {status === "SUCCESS" && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            background: "rgba(0,0,0,0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: "10px",
-              boxShadow: "0 6px 24px rgba(0,0,0,0.18)",
-              padding: "2.5em 2em 1.5em 2em",
-              minWidth: "300px",
-              maxWidth: "90vw",
-              textAlign: "center",
-              position: "relative",
-            }}
-          >
-            <div style={{ fontSize: "1.4em", fontWeight: "bold", marginBottom: "1em", color: "#333" }}>
-              Spot submitted successfully!
-            </div>
-            <div style={{ marginBottom: "1.5em", color: "#444" }}>
-              Thank you for your submission. We'll review it soon.
-            </div>
-            <button
-              onClick={() => setStatus(null)}
-              style={{
-                padding: "0.5em 1.5em",
-                backgroundColor: "#333",
-                color: "#fff",
-                border: "none",
-                borderRadius: "5px",
-                fontWeight: "bold",
-                cursor: "pointer",
-                fontSize: "1em",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-              }}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-      <footer
-        style={{
-          width: "100%",
-          padding: "10px 20px",
-          textAlign: "center",
-          fontSize: "12px",
-          color: "#888",
-          backgroundColor: "#fdf5e6",
-        }}
-      >
-        for skaters, by skaters - made by{" "}
-        <a
-          href="https://www.instagram.com/kubifoczka/"
-          style={{ color: "#888", textDecoration: "none" }}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @kubifoczka
-        </a>
-      </footer>
+      
+      <Modal
+        isOpen={status === "SUCCESS"}
+        onClose={() => setStatus(null)}
+        title="Spot submitted successfully!"
+        message="Thank you for your submission. We'll review it soon."
+        buttonText="Close"
+      />
+      
+      <Footer />
     </div>
   );
 }
