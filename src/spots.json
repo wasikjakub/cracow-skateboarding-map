@@ -6,7 +6,7 @@
     "images": [
       "images/pejot.jpg",
       "images/pejot-3.jpg"
-            ],
+    ],
     "type": "Skatepark",
     "author": "admin",
     "date": "08.2025"
@@ -26,6 +26,15 @@
     "coordinates": [50.066287, 19.942049],
     "images": ["images/matejki.jpg"],
     "type": "Street",
+    "author": "admin",
+    "date": "08.2025"
+  },
+  {
+    "name": "Widok",
+    "note": "Concrete small skatepark with ledges, rails and a bowl",
+    "coordinates": [50.07656355640706, 19.885397667447712],
+    "images": [],
+    "type": "Skatepark",
     "author": "admin",
     "date": "08.2025"
   }
