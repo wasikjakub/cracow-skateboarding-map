@@ -57,6 +57,9 @@ export default function SpotDetails({ spot }) {
           </button>
         </div>
       )}
+      <div className="spot-meta">
+        submitted by {spot.author} on {spot.date}
+      </div>
     </div>
   );
 }

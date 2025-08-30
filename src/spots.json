@@ -33,6 +33,60 @@
     "name": "Widok",
     "note": "Concrete small skatepark with ledges, rails and a bowl",
     "coordinates": [50.07656355640706, 19.885397667447712],
+    "images": ["https://ucarecdn.com/b886ce26-1900-4404-acc1-bb09cf6b2a3c/-/preview/1000x666/"],
+    "type": "Skatepark",
+    "author": "admin",
+    "date": "08.2025"
+  },
+  {
+    "name": "Manual pad",
+    "note": "W miarę wysoki",
+    "coordinates": [50.06191918797561, 19.93834827740988],
+    "images": [],
+    "type": "Street",
+    "author": "Franek Dyrda",
+    "date": "08.2025"
+  },
+  {
+    "name": "Trasa ŁGW",
+    "note": ".",
+    "coordinates": [50.02197777041614, 19.92678815694132],
+    "images": [],
+    "type": "Skatepark",
+    "author": "Goczi",
+    "date": "08.2025"
+  },
+  {
+    "name": "Kleparski skatepark",
+    "note": ".",
+    "coordinates": [50.077854131052135, 19.937259256839756],
+    "images": [],
+    "type": "Skatepark",
+    "author": "011101",
+    "date": "08.2025"
+  },
+  {
+    "name": "Streetpark indoor",
+    "note": "paid entrance",
+    "coordinates": [50.056166, 20.020218],
+    "images": [],
+    "type": "Skatepark",
+    "author": "janek",
+    "date": "08.2025"
+  },
+  {
+    "name": "Rampa w Parku Krowoderskim",
+    "note": "dobre podłoże do jeżdżenia, ale tylko jedna, mała rampa",
+    "coordinates": [50.087776732917554, 19.92238372564316],
+    "images": ["https://ucarecdn.com/d5d29983-c689-4198-a093-7eeefefe2d8a/-/preview/1000x562/"],
+    "type": "Street",
+    "author": "Witu",
+    "date": "08.2025"
+  },
+  {
+    "name": "Skatepark Lotnikow",
+    "note": "Includes stair set, large bowl, manual pad and gap options",
+    "coordinates": [50.07290924543447, 19.988806328773485],
     "images": [],
     "type": "Skatepark",
     "author": "admin",

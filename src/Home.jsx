@@ -42,11 +42,6 @@ export default function Home() {
       />
       <div className="spot-details-wrapper">
         <SpotDetails spot={selectedSpot} />
-        {selectedSpot && (
-          <div className="spot-author">
-            submitted by {selectedSpot.author} on {selectedSpot.date}
-          </div>
-        )}
       </div>
       <Footer />
     </div>

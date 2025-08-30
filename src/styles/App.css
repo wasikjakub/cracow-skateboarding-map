@@ -433,6 +433,15 @@ input[role="uploadcare-uploader"]:hover {
   text-align: center;
 }
 
+/* Spot meta (author/date) */
+.spot-meta {
+  margin-top: 12px;
+  margin-bottom: 24px;
+  font-size: 0.95em;
+  color: #666;
+  text-align: center;
+}
+
 /* Image Gallery */
 .image-gallery {
   position: relative;
@@ -555,7 +564,7 @@ input[role="uploadcare-uploader"]:hover {
 /* Responsive Design */
 @media (max-width: 600px) {
   .spot-note {
-    margin-bottom: -30vw;
+    margin-bottom: 16px; /* override previous -30vw behavior */
   }
   
   .main-heading,
