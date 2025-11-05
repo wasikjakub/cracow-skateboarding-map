@@ -32,46 +32,6 @@ src/
 └── spots.json           # Skateboarding spots data
 ```
 
-## Key Improvements Made
-
-### 🧹 **Code Cleanup**
-- Removed all inline styles and moved them to dedicated CSS files
-- Eliminated code duplication across components
-- Created reusable utility functions for map operations
-
-### 🏗️ **Better Organization**
-- Separated concerns: components, styles, utilities, and constants
-- Created reusable components for common UI elements
-- Centralized map configuration and utilities
-
-### 🎨 **Improved Styling**
-- Consistent CSS classes and naming conventions
-- Responsive design with proper media queries
-- Hover effects and smooth transitions
-
-### 🔧 **Maintainability**
-- Easy to modify styles without touching component logic
-- Centralized constants for easy updates
-- Clean, readable component structure
-
-## Getting Started
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for production:**
-   ```bash
-   npm run build
-   ```
-
-## Technologies Used
 
 - **React 19** - Modern React with hooks
 - **Leaflet** - Interactive maps
@@ -80,7 +40,7 @@ src/
 
 ## Contributing
 
-Feel free to submit new spots or contribute to the codebase. The project is now much cleaner and easier to maintain!
+Feel free to submit new spots or contribute to the codebase.
 
 ---
 
