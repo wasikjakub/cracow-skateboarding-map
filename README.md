@@ -43,5 +43,3 @@ src/
 Feel free to submit new spots or contribute to the codebase.
 
 ---
-
-*For skaters, by skaters - made by [@kubifoczka](https://www.instagram.com/kubifoczka/)*
