@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Home from "./Home";
 import AddSpot from "./AddSpot";
+import Media from "./Media";
 import "@fontsource/ibm-plex-mono";
 import "./styles/App.css";
 import { initGA } from "./utils/analytics";
@@ -38,10 +39,17 @@ export default function App() {
         >
           Add Spot
         </button>
+        <button
+          onClick={() => handlePageChange("media")}
+          className="nav-button"
+        >
+          Media
+        </button>
       </nav>
       <div className="page-container">
         {page === "home" && <Home />}
         {page === "add" && <AddSpot />}
+        {page === "media" && <Media />}
       </div>
     </div>
   );

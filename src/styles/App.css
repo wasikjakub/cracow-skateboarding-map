@@ -7,7 +7,9 @@
 
 body {
   font-family: 'IBM Plex Mono', monospace;
-  background-color: #fdf5e6;
+  background: linear-gradient(160deg, #f9f6f0 0%, #ede8df 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -20,7 +22,6 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-stroke: 0 !important;
 }
 
-/* Ensure headings are never treated as links on mobile */
 h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   color: inherit !important;
   text-decoration: none !important;
@@ -36,11 +37,13 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 10px 0;
-  background-color: #fdf5e6;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(249, 246, 240, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 1000;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .nav-button {
@@ -49,23 +52,23 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   background: transparent;
   cursor: pointer;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 16px;
-  padding: 8px 16px;
+  font-size: 15px;
+  padding: 8px 20px;
+  border-radius: 8px;
   transition: all 0.2s ease;
-  color: #333 !important;
+  color: #444 !important;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #444 !important;
   -webkit-text-stroke: 0 !important;
 }
 
 .nav-button:hover,
 .nav-button:focus,
 .nav-button:active {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  color: #333 !important;
+  background-color: rgba(0, 0, 0, 0.07);
+  color: #222 !important;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #222 !important;
 }
 
 /* Layout */
@@ -79,7 +82,6 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  background-color: #fdf5e6;
   overflow: auto;
   overflow-x: hidden;
 }
@@ -93,74 +95,158 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
 
 /* Typography */
 .main-heading {
-  margin-bottom: 30px;
-  font-size: 5vw;
-  color: #333 !important;
+  margin: 24px 0 16px;
+  font-size: clamp(20px, 5vw, 36px);
+  color: #2a2a2a !important;
   text-align: center;
   font-weight: bold;
+  letter-spacing: -0.02em;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #2a2a2a !important;
   -webkit-text-stroke: 0 !important;
 }
 
 .main-heading:hover,
 .main-heading:focus,
 .main-heading:active {
-  color: #333 !important;
+  color: #2a2a2a !important;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #2a2a2a !important;
 }
 
 .sub-heading {
-  font-size: 5vw;
-  margin-bottom: 30px;
-  color: #333 !important;
+  margin: 24px 0 12px;
+  font-size: clamp(18px, 5vw, 32px);
+  color: #2a2a2a !important;
   text-align: center;
   font-weight: bold;
+  letter-spacing: -0.02em;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #2a2a2a !important;
   -webkit-text-stroke: 0 !important;
 }
 
 .sub-heading:hover,
 .sub-heading:focus,
 .sub-heading:active {
-  color: #333 !important;
+  color: #2a2a2a !important;
   text-decoration: none !important;
-  -webkit-text-fill-color: #333 !important;
+  -webkit-text-fill-color: #2a2a2a !important;
 }
 
 .description {
   text-align: center;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #777;
+  padding: 0 16px;
+  line-height: 1.6;
+}
+
+/* City Tabs */
+.city-tabs {
+  display: flex;
+  gap: 8px;
   margin-bottom: 20px;
-  font-size: 1.2em;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.city-tab {
+  padding: 7px 18px;
+  border: 1.5px solid #ccc;
+  border-radius: 50px;
+  background: transparent;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.city-tab:hover {
+  border-color: #555;
+  color: #333;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.city-tab.active {
+  background: #2a2a2a;
+  color: white;
+  border-color: #2a2a2a;
+}
+
+/* Type Filter */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 0.05em;
+}
+
+.filter-tab {
+  padding: 5px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 50px;
+  background: transparent;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-tab:hover {
+  border-color: #888;
   color: #444;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.filter-tab.active {
+  background: #6b6b6b;
+  color: white;
+  border-color: #6b6b6b;
 }
 
 /* Map Styles */
 .map-container {
-  height: 60vh;
+  height: 58vh;
   width: 90%;
   max-width: 750px;
-  border: 2px solid black;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  margin-bottom: 24px;
+  overflow: hidden;
 }
 
 /* Form Styles */
 .form-wrapper {
   width: 90%;
   max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+  margin: 0 auto 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  padding: 28px 24px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -171,10 +257,11 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
 }
 
 .form-label {
-  color: black;
+  color: #555;
   text-align: center;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -183,16 +270,25 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
 .form-select {
   width: 100%;
   max-width: 300px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 9px 14px;
+  border: 1.5px solid #e0dbd4;
+  border-radius: 8px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 14px;
   color: #333 !important;
+  background-color: #fafaf8;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: #555;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.08);
   background-color: white;
 }
 
-/* Style dropdown options */
 .form-select option {
   color: #333 !important;
   background-color: white;
@@ -200,18 +296,14 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   font-size: 14px;
 }
 
-/* Style the placeholder option specifically */
 .form-select option[value=""] {
   color: #333 !important;
   background-color: white;
 }
 
-/* Ensure select text is always black */
-.form-select:focus,
-.form-select:hover,
-.form-select:active {
+.form-select:hover {
+  border-color: #555;
   color: #333 !important;
-  border-color: #333;
 }
 
 .form-textarea {
@@ -220,21 +312,27 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
 }
 
 .form-button {
-  margin-top: 10px;
+  margin-top: 8px;
   outline: none;
   border: none;
-  background-color: #333;
+  background-color: #2a2a2a;
   color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 11px 20px;
+  border-radius: 8px;
   cursor: pointer;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 16px;
-  transition: background-color 0.2s ease;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .form-button:hover {
-  background-color: #555;
+  background-color: #444;
+}
+
+.form-button:active {
+  transform: scale(0.98);
 }
 
 /* Image Upload */
@@ -242,7 +340,6 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   margin-top: 8px;
 }
 
-/* File upload button styling - More aggressive targeting */
 input[role="uploadcare-uploader"] {
   background-color: #333 !important;
   color: white !important;
@@ -260,7 +357,6 @@ input[role="uploadcare-uploader"]:hover {
   border-color: #555 !important;
 }
 
-/* Uploadcare widget styling */
 .uploadcare__widget {
   background-color: #333 !important;
   color: white !important;
@@ -278,7 +374,6 @@ input[role="uploadcare-uploader"]:hover {
   border-color: #555 !important;
 }
 
-/* Target Uploadcare button specifically */
 .uploadcare__button {
   background-color: #333 !important;
   color: white !important;
@@ -296,7 +391,6 @@ input[role="uploadcare-uploader"]:hover {
   border-color: #555 !important;
 }
 
-/* Additional Uploadcare element targeting */
 .uploadcare__widget__button,
 .uploadcare__widget__button_type_open,
 .uploadcare__widget__button_type_upload {
@@ -318,7 +412,6 @@ input[role="uploadcare-uploader"]:hover {
   border-color: #555 !important;
 }
 
-/* Target any button-like elements that might be generated */
 [data-role="uploadcare-uploader"] button,
 [role="uploadcare-uploader"] + button,
 .uploadcare__widget button {
@@ -340,7 +433,6 @@ input[role="uploadcare-uploader"]:hover {
   border-color: #555 !important;
 }
 
-/* Target any element with uploadcare in the class name */
 [class*="uploadcare"] {
   background-color: #333 !important;
   color: white !important;
@@ -353,7 +445,6 @@ input[role="uploadcare-uploader"]:hover {
   transition: all 0.2s ease !important;
 }
 
-/* Target any element with uploadcare in the class name on hover */
 [class*="uploadcare"]:hover {
   background-color: #555 !important;
   border-color: #555 !important;
@@ -371,14 +462,14 @@ input[role="uploadcare-uploader"]:hover {
   width: 64px;
   height: 64px;
   object-fit: cover;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 1px solid #e0dbd4;
 }
 
 /* Spot Details */
 .spot-details {
-  margin-top: 5px;
-  padding: 20px;
+  margin: 0 5% 32px;
+  padding: 28px 24px;
   font-family: 'IBM Plex Mono', monospace;
   width: 90%;
   max-width: 750px;
@@ -387,58 +478,83 @@ input[role="uploadcare-uploader"]:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .spot-details-placeholder {
-  margin-top: 5px;
-  font-size: 16px;
-  color: #555;
+  margin: 8px auto 32px;
+  font-size: 13px;
+  color: #aaa;
   font-family: 'IBM Plex Mono', monospace;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 100%;
+  height: 100px;
+  width: 90%;
   max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  border: 1.5px dashed #d5cfc8;
 }
 
 .spot-name {
-  font-size: 24px;
-  margin-bottom: 5px;
-  color: #333;
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #2a2a2a;
   text-align: center;
   width: 100%;
+  font-weight: bold;
+}
+
+.spot-type-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 11px;
+  background: #f0ebe0;
+  color: #777;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .spot-note {
-  font-size: 16px;
+  font-size: 14px;
   color: #555;
   margin-bottom: 20px;
   text-align: center;
   width: 100%;
   max-width: 600px;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
-.spot-author {
-  margin-top: -5vh;
-  margin-bottom: 30px;
-  font-size: 0.9em;
-  color: #666;
-  text-align: center;
+/* Spot navigation */
+.spot-navigate {
+  font-size: 13px;
+  color: #555;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.spot-navigate-link {
+  color: #2a2a2a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.spot-navigate-link:hover {
+  color: #555;
 }
 
 /* Spot meta (author/date) */
 .spot-meta {
   margin-top: 12px;
-  margin-bottom: 24px;
-  font-size: 0.95em;
-  color: #666;
+  font-size: 12px;
+  color: #bbb;
   text-align: center;
 }
 
@@ -447,7 +563,7 @@ input[role="uploadcare-uploader"]:hover {
   position: relative;
   width: 100%;
   max-width: 750px;
-  height: 60vh;
+  height: 55vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -457,34 +573,40 @@ input[role="uploadcare-uploader"]:hover {
 .gallery-image {
   max-height: 100%;
   max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-nav-button {
   position: absolute;
-  background: none;
+  background: rgba(255, 255, 255, 0.92);
   border: none;
-  font-size: 24px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
   cursor: pointer;
   color: #333;
-  padding: 10px;
-  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
   z-index: 10;
+  padding: 0;
 }
 
 .gallery-nav-button:hover {
-  color: #666;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-nav-button.prev {
-  left: 10px;
+  left: 8px;
 }
 
 .gallery-nav-button.next {
-  right: 10px;
+  right: 8px;
 }
 
 /* Modal */
@@ -494,17 +616,19 @@ input[role="uploadcare-uploader"]:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .modal-content {
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
   padding: 2.5em 2em 1.5em 2em;
   min-width: 300px;
   max-width: 90vw;
@@ -513,62 +637,134 @@ input[role="uploadcare-uploader"]:hover {
 }
 
 .modal-title {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 1em;
-  color: #333;
+  margin-bottom: 0.8em;
+  color: #2a2a2a;
 }
 
 .modal-message {
   margin-bottom: 1.5em;
-  color: #444;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .modal-button {
-  padding: 0.5em 1.5em;
-  background-color: #333;
+  padding: 0.6em 2em;
+  background-color: #2a2a2a;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 1em;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-size: 0.95em;
+  font-family: 'IBM Plex Mono', monospace;
   transition: background-color 0.2s ease;
 }
 
 .modal-button:hover {
-  background-color: #555;
+  background-color: #444;
+}
+
+/* Media Page */
+.media-grid {
+  width: 90%;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.media-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.media-description {
+  padding: 16px 20px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
 }
 
 /* Footer */
 .footer {
   width: 100%;
-  padding: 10px 20px;
+  padding: 20px;
   text-align: center;
   font-size: 12px;
-  color: #888;
-  background-color: #fdf5e6;
+  color: #bbb;
 }
 
 .footer-link {
-  color: #888;
+  color: #bbb;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-  color: #666;
+  color: #888;
 }
 
-/* Responsive Design */
+/* Responsive — mobile */
 @media (max-width: 600px) {
-  .spot-note {
-    margin-bottom: 16px; /* override previous -30vw behavior */
+  .map-container {
+    width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
-  
-  .main-heading,
-  .sub-heading {
-    font-size: 8vw;
+
+  .spot-details {
+    margin: 0 0 24px;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
-} 
+
+  .spot-details-placeholder {
+    width: 100%;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 24px 16px;
+  }
+
+  .city-tabs {
+    gap: 6px;
+  }
+
+  .city-tab {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}

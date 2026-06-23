@@ -9,7 +9,8 @@
     ],
     "type": "Skatepark",
     "author": "admin",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Sheraton Plaza",
@@ -18,7 +19,8 @@
     "images": ["images/sheraton.jpg"],
     "type": "Street",
     "author": "admin",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Matejki Plaza",
@@ -27,7 +29,8 @@
     "images": ["images/matejki.jpg"],
     "type": "Street",
     "author": "admin",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Widok",
@@ -36,7 +39,8 @@
     "images": ["https://ucarecdn.com/b886ce26-1900-4404-acc1-bb09cf6b2a3c/-/preview/1000x666/"],
     "type": "Skatepark",
     "author": "admin",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Manual pad",
@@ -45,7 +49,8 @@
     "images": [],
     "type": "Street",
     "author": "Franek Dyrda",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Trasa ŁGW",
@@ -54,7 +59,8 @@
     "images": [],
     "type": "Skatepark",
     "author": "Goczi",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Kleparski skatepark",
@@ -63,7 +69,8 @@
     "images": [],
     "type": "Skatepark",
     "author": "011101",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Streetpark indoor",
@@ -72,7 +79,8 @@
     "images": [],
     "type": "Skatepark",
     "author": "janek",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Rampa w Parku Krowoderskim",
@@ -81,7 +89,8 @@
     "images": ["https://ucarecdn.com/d5d29983-c689-4198-a093-7eeefefe2d8a/-/preview/1000x562/"],
     "type": "Street",
     "author": "Witu",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
   },
   {
     "name": "Skatepark Lotnikow",
@@ -90,6 +99,17 @@
     "images": [],
     "type": "Skatepark",
     "author": "admin",
-    "date": "08.2025"
+    "date": "08.2025",
+    "city": "Cracow"
+  },
+  {
+    "name": "pomnik Witosa",
+    "note": "Stair sets, flat area, ledges",
+    "coordinates": [52.227682179896505, 21.023588776588443],
+    "images": ["https://ucarecdn.com/317c4fea-5c7d-41ae-962b-b5b88567b878/Screenshot20260623at155055.png"],
+    "type": "Street",
+    "author": "admin",
+    "date": "06.2026",
+    "city": "Warsaw"
   }
 ]

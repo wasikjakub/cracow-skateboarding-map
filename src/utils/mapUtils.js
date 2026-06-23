@@ -40,8 +40,9 @@ export const initializeMap = (containerId, center = DEFAULT_CENTER, zoom = DEFAU
   return map;
 };
 
-// Add markers to map
+// Add markers to map, returns array of created markers
 export const addMarkersToMap = (map, spots, customIcon, onMarkerClick) => {
+  const markers = [];
   spots.forEach((spot) => {
     const marker = L.marker(spot.coordinates, { icon: customIcon })
       .addTo(map)
@@ -50,7 +51,9 @@ export const addMarkersToMap = (map, spots, customIcon, onMarkerClick) => {
     if (onMarkerClick) {
       marker.on("click", () => onMarkerClick(spot));
     }
+    markers.push(marker);
   });
+  return markers;
 };
 
 // Clean up map

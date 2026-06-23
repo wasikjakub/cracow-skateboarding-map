@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import { initializeMap, createCustomIcon, cleanupMap } from "./utils/mapUtils";
 import { SPOT_TYPES, FORMSPREE_ENDPOINT, UPLOADCARE_PUBLIC_KEY } from "./constants/formOptions";
+import { CITIES } from "./constants/cities";
 import { logFormSubmission, logMapInteraction } from "./utils/analytics";
 
 export default function AddSpot() {
@@ -15,7 +16,9 @@ export default function AddSpot() {
   const [images, setImages] = useState([]);
   const [type, setType] = useState("");
   const [author, setAuthor] = useState("");
+  const [city, setCity] = useState("Cracow");
   const [status, setStatus] = useState(null);
+  const mapRef = useRef(null);
 
   // Load Uploadcare script
   useEffect(() => {
@@ -68,30 +71,33 @@ export default function AddSpot() {
   }, []);
 
   useEffect(() => {
-    const customIcon = createCustomIcon();
-    const map = initializeMap("add-map");
+    const cityConfig = CITIES.find(c => c.name === city);
+    if (!mapRef.current) {
+      const customIcon = createCustomIcon();
+      mapRef.current = initializeMap("add-map", cityConfig.center, cityConfig.zoom);
 
-    // Track map initialization for add spot
-    logMapInteraction('Initialize', 'AddSpot Map');
+      logMapInteraction('Initialize', 'AddSpot Map');
 
-    let marker;
+      let marker;
+      mapRef.current.on("click", (e) => {
+        setLat(e.latlng.lat);
+        setLng(e.latlng.lng);
+        logMapInteraction('Click', 'Coordinate Selection');
+        if (marker) {
+          marker.setLatLng(e.latlng);
+        } else {
+          marker = L.marker(e.latlng, { icon: customIcon }).addTo(mapRef.current);
+        }
+      });
+    } else {
+      mapRef.current.flyTo(cityConfig.center, cityConfig.zoom, { duration: 1 });
+    }
+  }, [city]);
 
-    map.on("click", (e) => {
-      setLat(e.latlng.lat);
-      setLng(e.latlng.lng);
-
-      // Track map clicks
-      logMapInteraction('Click', 'Coordinate Selection');
-
-      if (marker) {
-        marker.setLatLng(e.latlng);
-      } else {
-        marker = L.marker(e.latlng, { icon: customIcon }).addTo(map);
-      }
-    });
-
+  useEffect(() => {
     return () => {
-      cleanupMap(map);
+      cleanupMap(mapRef.current);
+      mapRef.current = null;
     };
   }, []);
 
@@ -115,6 +121,17 @@ export default function AddSpot() {
       <p className="description">
         Click on the map to set coordinates and fill in the details below to submit a new spot.
       </p>
+      <div className="city-tabs">
+        {CITIES.map(c => (
+          <button
+            key={c.name}
+            className={`city-tab${city === c.name ? ' active' : ''}`}
+            onClick={() => setCity(c.name)}
+          >
+            {c.name}
+          </button>
+        ))}
+      </div>
       <div
         id="add-map"
         className="map-container"
@@ -212,6 +229,7 @@ export default function AddSpot() {
                 ))}
             </div>
           </div>
+          <input type="hidden" name="city" value={city} />
           <div className="form-group">
             <label className="form-label">Author: </label>
             <input 

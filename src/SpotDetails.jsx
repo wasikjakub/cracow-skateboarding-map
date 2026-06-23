@@ -33,6 +33,7 @@ export default function SpotDetails({ spot }) {
       <h2 className="spot-name">
         {spot.name}
       </h2>
+      {spot.type && <span className="spot-type-badge">{spot.type}</span>}
       <p className="spot-note">
         {spot.note}
       </p>
@@ -57,6 +58,17 @@ export default function SpotDetails({ spot }) {
           </button>
         </div>
       )}
+      <div className="spot-navigate">
+        Navigate to spot:{" "}
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${spot.coordinates[0]},${spot.coordinates[1]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="spot-navigate-link"
+        >
+          Open in Google Maps
+        </a>
+      </div>
       <div className="spot-meta">
         submitted by {spot.author} on {spot.date}
       </div>
