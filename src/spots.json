@@ -210,5 +210,20 @@
     "author": "admin",
     "date": "06.2026",
     "city": "Warsaw"
+  },
+  {
+    "name": "Ave Park",
+    "note": "Big indoor park with multiple features",
+    "coordinates": [
+      52.192745197187065,
+      20.934920310974125
+    ],
+    "images": [
+      "city:"
+    ],
+    "type": "Skatepark",
+    "author": "admin",
+    "date": "06.2026",
+    "city": "Warsaw"
   }
 ]
