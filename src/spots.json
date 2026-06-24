@@ -225,5 +225,20 @@
     "author": "admin",
     "date": "06.2026",
     "city": "Warsaw"
+  },
+  {
+    "name": "Swietokrzyska",
+    "note": "small park in city center",
+    "coordinates": [
+      52.233943685735476,
+      21.007833480834964
+    ],
+    "images": [
+      "https://i.ibb.co/JRfCczpH/9f7e13fc4f9e.png"
+    ],
+    "type": "Skatepark",
+    "author": "admin",
+    "date": "06.2026",
+    "city": "Warsaw"
   }
 ]
