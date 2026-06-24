@@ -11,7 +11,7 @@ const TYPES = ["All", "Skatepark", "Street", "DIY"];
 
 export default function Home() {
   const [selectedSpot, setSelectedSpot] = useState(null);
-  const [selectedCity, setSelectedCity] = useState("Cracow");
+  const [selectedCity, setSelectedCity] = useState("All Poland");
   const [typeFilter, setTypeFilter] = useState("All");
   const mapRef = useRef(null);
   const markersRef = useRef([]);
