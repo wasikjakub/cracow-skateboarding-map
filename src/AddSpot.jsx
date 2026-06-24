@@ -93,9 +93,20 @@ export default function AddSpot() {
         body: JSON.stringify(payload),
       });
 
-      const result = await res.json();
+      let result;
+      try {
+        result = await res.json();
+      } catch {
+        const text = await res.text();
+        console.error("GAS returned non-JSON response:", text);
+        setStatus("ERROR");
+        return;
+      }
+
+      if (!result.ok) console.error("GAS error:", result.error);
       setStatus(result.ok ? "SUCCESS" : "ERROR");
-    } catch {
+    } catch (err) {
+      console.error("Fetch failed:", err);
       setStatus("ERROR");
     }
   };
