@@ -103,6 +103,36 @@
     "city": "Cracow"
   },
   {
+    "name": "Skatepark Oleśnica",
+    "note": "",
+    "coordinates": [51.21591842603544, 17.37987399101259],
+    "images": [],
+    "type": "Skatepark",
+    "author": "Michał",
+    "date": "06.2026",
+    "city": "Wroclaw"
+  },
+  {
+    "name": "Skatepark",
+    "note": "Jako taki",
+    "coordinates": [54.46432159428194, 17.002474665641788],
+    "images": [],
+    "type": "Skatepark",
+    "author": "GrubszyOne",
+    "date": "06.2026",
+    "city": "Słupsk"
+  },
+  {
+    "name": "Bulwarowa ósemka",
+    "note": "Jest lot",
+    "coordinates": [54.468190734320885, 17.032936834821513],
+    "images": [],
+    "type": "Street",
+    "author": "GrubszyOne",
+    "date": "06.2026",
+    "city": "Słupsk"
+  },
+  {
     "name": "pomnik Witosa",
     "note": "Stair sets, flat area, ledges",
     "coordinates": [52.227682179896505, 21.023588776588443],

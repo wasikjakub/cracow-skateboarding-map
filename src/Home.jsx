@@ -33,7 +33,7 @@ export default function Home() {
 
     const customIcon = createCustomIcon();
     const filteredSpots = spots.filter(s =>
-      s.city === selectedCity &&
+      (selectedCity === "All Poland" || s.city === selectedCity) &&
       (typeFilter === "All" || s.type === typeFilter)
     );
 
