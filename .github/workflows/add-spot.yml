@@ -1,0 +1,120 @@
+name: Add Spot
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Spot name
+        required: true
+      note:
+        description: Note / description
+        required: false
+        default: ""
+      lat:
+        description: Latitude
+        required: true
+      lng:
+        description: Longitude
+        required: true
+      type:
+        description: Type
+        required: true
+        type: choice
+        options:
+          - Street
+          - Skatepark
+          - DIY
+      city:
+        description: City
+        required: true
+        type: choice
+        options:
+          - Cracow
+          - Warsaw
+          - Wroclaw
+          - Trojmiasto
+          - Słupsk
+          - Other
+      author:
+        description: Author / submitted by
+        required: false
+        default: "anonymous"
+      images:
+        description: Image URLs (comma-separated, from Uploadcare or any CDN)
+        required: false
+        default: ""
+
+jobs:
+  add-spot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Append spot to spots.json
+        env:
+          NAME: ${{ inputs.name }}
+          NOTE: ${{ inputs.note }}
+          LAT: ${{ inputs.lat }}
+          LNG: ${{ inputs.lng }}
+          TYPE: ${{ inputs.type }}
+          CITY: ${{ inputs.city }}
+          AUTHOR: ${{ inputs.author }}
+          IMAGES: ${{ inputs.images }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, re
+          from datetime import datetime
+
+          with open("src/spots.json", "r", encoding="utf-8") as f:
+              spots = json.load(f)
+
+          raw_images = os.environ.get("IMAGES", "").strip()
+          images = [u.strip() for u in re.split(r"[,\s]+", raw_images) if u.strip()] if raw_images else []
+
+          spot = {
+              "name": os.environ["NAME"].strip(),
+              "note": os.environ.get("NOTE", "").strip(),
+              "coordinates": [float(os.environ["LAT"]), float(os.environ["LNG"])],
+              "images": images,
+              "type": os.environ["TYPE"],
+              "author": os.environ.get("AUTHOR", "anonymous").strip(),
+              "date": datetime.now().strftime("%m.%Y"),
+              "city": os.environ["CITY"],
+          }
+
+          spots.append(spot)
+
+          with open("src/spots.json", "w", encoding="utf-8") as f:
+              json.dump(spots, f, ensure_ascii=False, indent=2)
+
+          print(f"Added spot: {spot['name']} ({spot['city']})")
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/spots.json
+          git commit -m "Add spot: ${{ inputs.name }} (${{ inputs.city }})"
+          git push
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
