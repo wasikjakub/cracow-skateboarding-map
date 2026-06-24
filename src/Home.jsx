@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import spots from "./spots.json";
 import SpotDetails from "./SpotDetails";
 import Footer from "./components/Footer";
-import { initializeMap, createCustomIcon, addMarkersToMap, cleanupMap } from "./utils/mapUtils";
+import { initializeMap, addMarkersToMap, cleanupMap } from "./utils/mapUtils";
 import { logSpotView, logMapInteraction } from "./utils/analytics";
 import { CITIES } from "./constants/cities";
 
@@ -31,13 +31,12 @@ export default function Home() {
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
-    const customIcon = createCustomIcon();
     const filteredSpots = spots.filter(s =>
       (selectedCity === "All Poland" || s.city === selectedCity) &&
       (typeFilter === "All" || s.type === typeFilter)
     );
 
-    markersRef.current = addMarkersToMap(mapRef.current, filteredSpots, customIcon, (spot) => {
+    markersRef.current = addMarkersToMap(mapRef.current, filteredSpots, (spot) => {
       setSelectedSpot(spot);
       logSpotView(spot.name);
     });

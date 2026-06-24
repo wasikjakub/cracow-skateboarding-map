@@ -15,7 +15,7 @@ L.Icon.Default.mergeOptions({
 export const DEFAULT_CENTER = [50.0647, 19.945];
 export const DEFAULT_ZOOM = 13;
 
-// Create custom icon for markers
+// Create custom icon for markers (used for location picker in AddSpot)
 export const createCustomIcon = () => {
   return L.icon({
     iconUrl,
@@ -25,6 +25,27 @@ export const createCustomIcon = () => {
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41],
+  });
+};
+
+const TYPE_COLORS = {
+  Skatepark: '#3b82f6',
+  Street:    '#f97316',
+  DIY:       '#22c55e',
+};
+
+export const createColoredIcon = (type) => {
+  const color = TYPE_COLORS[type] || '#6b7280';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="34" viewBox="0 0 22 34">
+    <path d="M11 0C4.925 0 0 4.925 0 11c0 8.25 11 23 11 23s11-14.75 11-23C22 4.925 17.075 0 11 0z"
+      fill="${color}" stroke="white" stroke-width="1.5"/>
+  </svg>`;
+  return L.divIcon({
+    html: svg,
+    className: '',
+    iconSize: [22, 34],
+    iconAnchor: [11, 34],
+    popupAnchor: [0, -34],
   });
 };
 
@@ -41,10 +62,10 @@ export const initializeMap = (containerId, center = DEFAULT_CENTER, zoom = DEFAU
 };
 
 // Add markers to map, returns array of created markers
-export const addMarkersToMap = (map, spots, customIcon, onMarkerClick) => {
+export const addMarkersToMap = (map, spots, onMarkerClick) => {
   const markers = [];
   spots.forEach((spot) => {
-    const marker = L.marker(spot.coordinates, { icon: customIcon })
+    const marker = L.marker(spot.coordinates, { icon: createColoredIcon(spot.type) })
       .addTo(map)
       .bindPopup(`<b>${spot.name}</b>`);
 
