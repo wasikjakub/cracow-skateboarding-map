@@ -220,6 +220,34 @@ h1:not(a), h2:not(a), h3:not(a), h4:not(a), h5:not(a), h6:not(a) {
   border-color: #6b6b6b;
 }
 
+/* Stats Banner */
+.stats-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: #bbb;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+  letter-spacing: 0.03em;
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stats-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
 /* Map Styles */
 .map-container {
   height: 58vh;

@@ -59,6 +59,15 @@ function doPost(e) {
     };
 
     const ok = triggerWorkflow(token, spot);
+
+    if (ok) {
+      MailApp.sendEmail(
+        'kwasik15@gmail.com',
+        `New spot: ${spot.name} (${spot.city})`,
+        `A new spot was submitted:\n\nName: ${spot.name}\nType: ${spot.type}\nCity: ${spot.city}\nAuthor: ${spot.author}\nNote: ${spot.note}\nCoordinates: ${spot.lat}, ${spot.lng}\nImages: ${spot.images || 'none'}`
+      );
+    }
+
     return jsonResponse({ ok });
 
   } catch (err) {

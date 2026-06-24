@@ -9,6 +9,14 @@ import { CITIES } from "./constants/cities";
 
 const TYPES = ["All", "Skatepark", "Street", "DIY"];
 
+const STATS = {
+  total:     spots.length,
+  skatepark: spots.filter(s => s.type === "Skatepark").length,
+  street:    spots.filter(s => s.type === "Street").length,
+  diy:       spots.filter(s => s.type === "DIY").length,
+  skaters:   new Set(spots.map(s => s.author).filter(Boolean)).size,
+};
+
 export default function Home() {
   const [selectedSpot, setSelectedSpot] = useState(null);
   const [selectedCity, setSelectedCity] = useState("All Poland");
@@ -76,6 +84,13 @@ export default function Home() {
             {t}
           </button>
         ))}
+      </div>
+      <div className="stats-banner">
+        <span>all: {STATS.total}</span>
+        <span className="stats-item"><span className="stats-dot" style={{ background: "#3b82f6" }} />{STATS.skatepark}</span>
+        <span className="stats-item"><span className="stats-dot" style={{ background: "#f97316" }} />{STATS.street}</span>
+        <span className="stats-item"><span className="stats-dot" style={{ background: "#22c55e" }} />{STATS.diy}</span>
+        <span>skaters: {STATS.skaters}</span>
       </div>
       <div
         id="map"

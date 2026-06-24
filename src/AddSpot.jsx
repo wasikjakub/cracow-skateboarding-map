@@ -239,7 +239,7 @@ export default function AddSpot() {
         isOpen={status === "SUCCESS"}
         onClose={() => setStatus(null)}
         title="Spot submitted successfully!"
-        message="Thank you for your submission. We'll review it soon."
+        message="Thank you for your submission. Spot will be visible on map in <5 min"
         buttonText="Close"
       />
 
