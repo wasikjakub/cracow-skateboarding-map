@@ -60,7 +60,7 @@ function doPost(e) {
         const blob = Utilities.newBlob(bytes, img.mimeType, img.name);
         const file = folder.createFile(blob);
         file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-        imageUrls.push('https://drive.google.com/uc?export=view&id=' + file.getId());
+        imageUrls.push('https://lh3.googleusercontent.com/d/' + file.getId());
       });
     }
 
