@@ -29,40 +29,23 @@ const WORKFLOW = 'add-spot.yml';
 const PROCESSED_LABEL = 'spot-processed';
 
 // ---------------------------------------------------------------------------
-// Web App entry point — receives submissions directly from the React form
-// Deploy this script as a Web App (Execute as: Me, Access: Anyone) and paste
-// the URL into src/constants/formOptions.js as GAS_ENDPOINT.
-//
-// Required Script Property:
-//   IMAGES_FOLDER_ID — Google Drive folder ID where spot photos are stored.
-//   Create a folder in Drive, share it as "Anyone with the link can view",
-//   then copy the ID from its URL: drive.google.com/drive/folders/<ID>
+// Web App entry point — receives submissions directly from the React form.
+// Images are uploaded to ImgBB by the React app before this is called;
+// this function receives URL strings and passes them straight to GitHub Actions.
+// Deploy as Web App (Execute as: Me, Access: Anyone).
 // ---------------------------------------------------------------------------
 
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     const token = PropertiesService.getScriptProperties().getProperty('GITHUB_TOKEN');
-    const folderId = PropertiesService.getScriptProperties().getProperty('IMAGES_FOLDER_ID');
 
     if (!token) return jsonResponse({ ok: false, error: 'GITHUB_TOKEN not set' });
-    if (!folderId) return jsonResponse({ ok: false, error: 'IMAGES_FOLDER_ID not set' });
     if (!data.name || !data.lat || !data.lng) {
       return jsonResponse({ ok: false, error: 'Missing required fields' });
     }
 
-    // Upload images to Google Drive and collect public URLs
-    const imageUrls = [];
-    if (Array.isArray(data.images) && data.images.length > 0) {
-      const folder = DriveApp.getFolderById(folderId);
-      data.images.forEach(img => {
-        const bytes = Utilities.base64Decode(img.base64);
-        const blob = Utilities.newBlob(bytes, img.mimeType, img.name);
-        const file = folder.createFile(blob);
-        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-        imageUrls.push('https://lh3.googleusercontent.com/d/' + file.getId());
-      });
-    }
+    const imageUrls = Array.isArray(data.images) ? data.images : [];
 
     const spot = {
       name:   data.name.trim(),

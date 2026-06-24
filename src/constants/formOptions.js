@@ -5,5 +5,5 @@ export const SPOT_TYPES = [
   { value: "DIY", label: "DIY" }
 ];
 
-// Paste your GAS Web App deployment URL here after deploying (Step 5 in setup guide)
 export const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBjOfuBpfM2hvbkCxDlGwmH3_g49xLRkuu0da2-ukoBv7l1-svRWIGkCVWCJvlgQeUNg/exec";
+export const IMGBB_API_KEY = "eda046dacb234ba8df01d9f22764d4b9";

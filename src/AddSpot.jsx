@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import { initializeMap, createCustomIcon, cleanupMap } from "./utils/mapUtils";
-import { SPOT_TYPES, GAS_ENDPOINT } from "./constants/formOptions";
+import { SPOT_TYPES, GAS_ENDPOINT, IMGBB_API_KEY } from "./constants/formOptions";
 import { CITIES } from "./constants/cities";
 import { logFormSubmission, logMapInteraction } from "./utils/analytics";
 
@@ -58,24 +58,33 @@ export default function AddSpot() {
     setPreviews(selected.map(f => URL.createObjectURL(f)));
   };
 
+  const uploadToImgBB = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = reader.result.split(",")[1];
+        const form = new FormData();
+        form.append("key", IMGBB_API_KEY);
+        form.append("image", base64);
+        const res = await fetch("https://api.imgbb.com/1/upload", { method: "POST", body: form });
+        const data = await res.json();
+        if (!data.success) throw new Error("ImgBB upload failed");
+        resolve(data.data.url);
+      } catch (err) {
+        reject(err);
+      }
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("LOADING");
     logFormSubmission("AddSpot");
 
     try {
-      const imagePayloads = await Promise.all(
-        files.map(f => new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve({
-            name: f.name,
-            base64: reader.result.split(",")[1],
-            mimeType: f.type,
-          });
-          reader.onerror = reject;
-          reader.readAsDataURL(f);
-        }))
-      );
+      const imageUrls = await Promise.all(files.map(uploadToImgBB));
 
       const payload = {
         name: name.trim(),
@@ -85,7 +94,7 @@ export default function AddSpot() {
         type,
         city,
         author: author.trim() || "anonymous",
-        images: imagePayloads,
+        images: imageUrls,
       };
 
       const res = await fetch(GAS_ENDPOINT, {
