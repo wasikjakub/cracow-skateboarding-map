@@ -266,5 +266,20 @@
     "author": "Rupcio",
     "date": "06.2026",
     "city": "Cracow"
+  },
+  {
+    "name": "Vert Ramp",
+    "note": "A vertical ramp",
+    "coordinates": [
+      50.044439402712506,
+      20.002446323633194
+    ],
+    "images": [
+      "https://i.ibb.co/KpC8PpZP/bb5643a18300.jpg"
+    ],
+    "type": "DIY",
+    "author": "Rupcio",
+    "date": "06.2026",
+    "city": "Cracow"
   }
 ]
