@@ -9,7 +9,6 @@ import { CITIES } from "./constants/cities";
 import { logFormSubmission, logMapInteraction } from "./utils/analytics";
 
 const MAX_FILES = 5;
-const MAX_FILE_MB = 5;
 
 export default function AddSpot() {
   const [name, setName] = useState("");
@@ -55,12 +54,6 @@ export default function AddSpot() {
 
   const handleFileChange = (e) => {
     const selected = Array.from(e.target.files).slice(0, MAX_FILES);
-    const oversized = selected.filter(f => f.size > MAX_FILE_MB * 1024 * 1024);
-    if (oversized.length > 0) {
-      alert(`Each image must be under ${MAX_FILE_MB} MB. Remove larger files and try again.`);
-      e.target.value = "";
-      return;
-    }
     setFiles(selected);
     setPreviews(selected.map(f => URL.createObjectURL(f)));
   };
@@ -186,7 +179,7 @@ export default function AddSpot() {
           </div>
           <div className="form-group">
             <label className="form-label">
-              Images (optional — max {MAX_FILES} files, {MAX_FILE_MB} MB each):
+              Images (optional — max {MAX_FILES} files):
             </label>
             <input
               type="file"
