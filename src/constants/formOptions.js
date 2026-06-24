@@ -5,5 +5,5 @@ export const SPOT_TYPES = [
   { value: "DIY", label: "DIY" }
 ];
 
-export const FORMSPREE_ENDPOINT = "https://formspree.io/f/mkgvwbnw";
-export const UPLOADCARE_PUBLIC_KEY = "9ec3c18363d778e9556b"; 
+// Paste your GAS Web App deployment URL here after deploying (Step 5 in setup guide)
+export const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBjOfuBpfM2hvbkCxDlGwmH3_g49xLRkuu0da2-ukoBv7l1-svRWIGkCVWCJvlgQeUNg/exec";
