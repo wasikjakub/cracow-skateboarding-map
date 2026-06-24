@@ -238,5 +238,18 @@
     "author": "admin",
     "date": "06.2026",
     "city": "Warsaw"
+  },
+  {
+    "name": "Bowl",
+    "note": "miska",
+    "coordinates": [
+      49.29081328567846,
+      19.955268502235402
+    ],
+    "images": [],
+    "type": "Skatepark",
+    "author": "Alina Zemelferd boss bezrobocia",
+    "date": "06.2026",
+    "city": "Cracow"
   }
 ]
