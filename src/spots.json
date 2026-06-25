@@ -320,5 +320,18 @@
     "author": "Leon",
     "date": "06.2026",
     "city": "Wroclaw"
+  },
+  {
+    "name": "Skate plaża",
+    "note": "Nowy obiekt oddany do uzytku w 2025",
+    "coordinates": [
+      52.186399713606136,
+      21.575292348861698
+    ],
+    "images": [],
+    "type": "Skatepark",
+    "author": "anonymous",
+    "date": "06.2026",
+    "city": "Warsaw"
   }
 ]
