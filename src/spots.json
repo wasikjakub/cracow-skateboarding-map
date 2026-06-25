@@ -281,5 +281,18 @@
     "author": "Rupcio",
     "date": "06.2026",
     "city": "Cracow"
+  },
+  {
+    "name": "NFM",
+    "note": "Flat, Murki, schodki",
+    "coordinates": [
+      51.10662686812453,
+      17.02883924740162
+    ],
+    "images": [],
+    "type": "Street",
+    "author": "anonymous",
+    "date": "06.2026",
+    "city": "Wroclaw"
   }
 ]
