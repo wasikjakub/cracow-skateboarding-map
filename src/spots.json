@@ -333,5 +333,24 @@
     "author": "anonymous",
     "date": "06.2026",
     "city": "Warsaw"
+  },
+  {
+    "name": "Skatepark w Parku Kopernika",
+    "note": "Bowl + funbox do skoków, Bank ramp, Platforma z 2x podjazd, poręcz spadowa, grindbox spadowy, schody, Funbox bez podestu z wall ride, Grindbox prosty, Funbox bez podestu + poręcz łamana, Poręcz prosta, Funbox piramida + wall ride",
+    "coordinates": [
+      52.745514,
+      15.248353
+    ],
+    "images": [
+      "https://i.ibb.co/jP20fKMX/cd552013b3ea.jpg",
+      "https://i.ibb.co/LdrJMYFb/0480ab292680.jpg",
+      "https://i.ibb.co/fdSkpv3g/47e5554a68e4.jpg",
+      "https://i.ibb.co/c9CRDft/512993dd187c.jpg",
+      "https://i.ibb.co/DffxRkCV/5662dd05687d.jpg"
+    ],
+    "type": "Skatepark",
+    "author": "Zeziczek",
+    "date": "06.2026",
+    "city": "Cracow"
   }
 ]
