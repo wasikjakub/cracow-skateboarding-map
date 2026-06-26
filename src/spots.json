@@ -447,5 +447,23 @@
     "author": "Qubeowski",
     "date": "06.2026",
     "city": "Trojmiasto"
+  },
+  {
+    "name": "Skatepark Kadzielnia",
+    "note": "Wyremontowany w 2022\nNawierzchnia betonowa\nPrzeszkody:\nFunbox z poręczą, Platforma Street, Wallride, Bowl otwarty, Funbox z Gapem i poręczą, Spin z Wallem, Jumpbox, Bank Ramp, Quarter Pipe, Rollin, funbox z piramidą i grindbox z gapem\n\nDla dzieci Skatepark Kids z mniejszymi przeszkodami\n\nCałość oświetlona",
+    "coordinates": [
+      50.862301599170685,
+      20.615037918123566
+    ],
+    "images": [
+      "https://i.ibb.co/M5CFyGBs/d9934874ff66.jpg",
+      "https://i.ibb.co/n8bmbzHy/4200bdd99593.jpg",
+      "https://i.ibb.co/3ybFGxNy/9347826155f6.jpg",
+      "https://i.ibb.co/Fkg3wyKP/14924c36d5c6.jpg"
+    ],
+    "type": "Skatepark",
+    "author": "Qubeowski",
+    "date": "06.2026",
+    "city": "Cracow"
   }
 ]
