@@ -432,5 +432,20 @@
     "author": "Qubeowski",
     "date": "06.2026",
     "city": "Trojmiasto"
+  },
+  {
+    "name": "Skwer z fontanną",
+    "note": "Skwer Reginy Osowickiej\nNawierzchnia z płyt granitowych\nOświetlenie\nJedynym mankamentem monitoring, ale nie miałem z nim nieprzyjemności",
+    "coordinates": [
+      54.60252614058629,
+      18.226423502001126
+    ],
+    "images": [
+      "https://i.ibb.co/V0LnrrXw/cb7d132e3f58.jpg"
+    ],
+    "type": "Street",
+    "author": "Qubeowski",
+    "date": "06.2026",
+    "city": "Trojmiasto"
   }
 ]
