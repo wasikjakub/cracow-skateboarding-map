@@ -386,5 +386,20 @@
     "author": "Qubeowski",
     "date": "06.2026",
     "city": "Trojmiasto"
+  },
+  {
+    "name": "Skatepark",
+    "note": "Wyremontowany w 2021 roku\nGładka betonowa nawierzchnia\nQuarter pipe'y\nFunbox\nBump / Wulkan",
+    "coordinates": [
+      54.60523439978465,
+      18.356038570436798
+    ],
+    "images": [
+      "https://i.ibb.co/MDrcrZ9f/d4af49322db7.jpg"
+    ],
+    "type": "Skatepark",
+    "author": "Qubeowski",
+    "date": "06.2026",
+    "city": "Trojmiasto"
   }
 ]
