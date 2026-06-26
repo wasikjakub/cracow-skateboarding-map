@@ -416,5 +416,21 @@
     "author": "Qubeowski",
     "date": "06.2026",
     "city": "Trojmiasto"
+  },
+  {
+    "name": "Dach hali garażowej",
+    "note": "Asfaltowy flat z fajnym widokiem przy zachodzącym słońcu\n\nOd jakiegoś czasu kręci się tam ochrona, ale myślę, że można się dogadać",
+    "coordinates": [
+      54.611497206378154,
+      18.2927867174476
+    ],
+    "images": [
+      "https://i.ibb.co/N2HXQpJ8/821cca40ff01.jpg",
+      "https://i.ibb.co/6RwzNbrY/21a6d88a843c.jpg"
+    ],
+    "type": "Street",
+    "author": "Qubeowski",
+    "date": "06.2026",
+    "city": "Trojmiasto"
   }
 ]
